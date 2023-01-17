@@ -9,8 +9,8 @@ node{
     }
     /*
     stage('deploy'){
-  sshagent(['tomcat']) {
-  sh "scp -o StrictHostKeyChecking=no target/*war ec2-user@172.31.15.31:/opt/tomcat9/webapps/"
+  steps{
+  deploy adapters: [tomcat7(credentialsId: 'ea96a599-3f8a-4966-b095-0f38531ae74e', path: '', url: 'http://localhost:8080/')], contextPath: null, war: '**/*.war'
 }
 }
 stage('email'){
@@ -19,5 +19,6 @@ emailext body: '''Build is over
 Acada
 437212483''', recipientProviders: [developers(), requestor()], subject: 'Build', to: 'tdapp@gmail.com'
 }
+
     */
 }
